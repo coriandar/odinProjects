@@ -1,6 +1,27 @@
 // TODO:
-// get value from form
+// onblur? live, auto update, no button
+
 function populatePokedex () {
+    let min = parseInt(document.querySelector('input[name="min"]').value);
+    let max = parseInt(document.querySelector('input[name="max"]').value);
+
+    if (isNaN(min)) {
+        min = 1;
+    }
+    if (isNaN(max)) {
+        max = 10;
+    }
+    if (min > max) {
+        min = 1;
+    }
+    if (max > 151) {
+        max = 151;
+    }
+
+    createEntry(min, max);
+}
+
+function createEntry(min, max) {
     const pokeNames = [
         'Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon' ,'Charizard' ,'Squirtle' ,'Wartortle' ,'Blastoise' ,'Caterpie'
         ,'Metapod' ,'Butterfree' ,'Weedle' ,'Kakuna' ,'Beedrill' ,'Pidgey' ,'Pidgeotto' ,'Pidgeot' ,'Rattata' ,'Raticate'
@@ -17,22 +38,6 @@ function populatePokedex () {
         ,'Tauros' ,'Magikarp' ,'Gyarados' ,'Lapras' ,'Ditto' ,'Eevee' ,'Vaporeon' ,'Jolteon' ,'Flareon' ,'Porygon' ,'Omanyte'
         ,'Omastar' ,'Kabuto' ,'Kabutops' ,'Aerodactyl' ,'Snorlax' ,'Articuno' ,'Zapdos' ,'Moltres' ,'Dratini' ,'Dragonair' ,'Dragonite', 'Mewtwo'
         ,'Mew'];
-
-    let min = parseInt(document.querySelector('input[name="min"]').value);
-    let max = parseInt(document.querySelector('input[name="max"]').value);
-
-    if (isNaN(min)) {
-        min = 1;
-    }
-    if (isNaN(max)) {
-        max = 10;
-    }
-    if (min > max) {
-        min = 1;
-    }
-    if (max > 151) {
-        max = 151;
-    }
 
     const baseURL ='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
     const container = document.createElement('section');
@@ -56,7 +61,6 @@ function populatePokedex () {
 function removePokemon() {
     const container = document.querySelector('section');
     if (container) {
-        // console.log('hello');
         container.remove();
     }
 }
@@ -65,5 +69,5 @@ const showPokemon = document.querySelector('button');
 
 showPokemon.addEventListener('click', function() {
     removePokemon();
-    populatePokedex()
+    populatePokedex();
 });

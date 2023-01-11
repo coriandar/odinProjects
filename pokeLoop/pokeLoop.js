@@ -1,13 +1,9 @@
 // TODO:
 // add name
-// make live form
-// let start = document.querySelector('input[name="start"]').value;
-// console.log(start)
 
 function populatePokedex() {
-    // loop error without parseInt, need sanitise
-    let min = parseInt(prompt("min#:"));
-    let max = parseInt(prompt("max#: "));
+    let min = parseInt(document.querySelector('input[name="min"]').value);
+    let max = parseInt(document.querySelector('input[name="max"]').value);
 
     if (min > max) {
         min = 1;

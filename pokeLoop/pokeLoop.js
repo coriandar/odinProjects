@@ -35,6 +35,8 @@ function populatePokedex () {
     }
 
     const baseURL ='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
+    const container = document.createElement('section');
+    document.body.append(container);
 
     for (let i = min; i <= max; i++){
         const pokemon = document.createElement('div');
@@ -46,18 +48,16 @@ function populatePokedex () {
         label.innerText += `\n${pokeNames[i-1]}`;
         img.src = `${baseURL}${i}.png`;
 
-        pokemon.appendChild(img);
-        pokemon.appendChild(label);
-        document.body.appendChild(pokemon);
+        pokemon.append(img, label); // allows multiple
+        container.appendChild(pokemon); // one per call
     }
 }
 
 function removePokemon() {
-    const div = document.querySelectorAll('.pokemon');
-    if (div.length > 0 ) {
-        for (let ele of div) {
-            ele.remove();
-        }
+    const container = document.querySelector('section');
+    if (container) {
+        // console.log('hello');
+        container.remove();
     }
 }
 

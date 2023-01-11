@@ -1,6 +1,8 @@
 // TODO:
 // onblur? live, auto update, no button
 
+/* Source: https://github.com/PokeAPI */
+
 function populatePokedex () {
     let min = parseInt(document.querySelector('input[name="min"]').value);
     let max = parseInt(document.querySelector('input[name="max"]').value);

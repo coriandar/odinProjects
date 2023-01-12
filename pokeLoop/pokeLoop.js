@@ -1,5 +1,3 @@
-// TODO:
-// onblur? live, auto update, no button
 
 /* Source: https://github.com/PokeAPI */
 
@@ -11,7 +9,7 @@ function populatePokedex () {
         min = 1;
     }
     if (isNaN(max)) {
-        max = 10;
+        max = 151;
     }
     if (min > max) {
         min = 1;
@@ -60,16 +58,36 @@ function createEntry(min, max) {
     }
 }
 
-function removePokemon() {
+function removePokedex() {
     const container = document.querySelector('section');
     if (container) {
         container.remove();
     }
 }
 
-const showPokemon = document.querySelector('button');
+function showOnClick() {
+    const showPokemon = document.querySelector('button');
+    
+    showPokemon.addEventListener('click', function() {
+        removePokedex();
+        populatePokedex();
+    });
+}
 
-showPokemon.addEventListener('click', function() {
-    removePokemon();
-    populatePokedex();
-});
+function showOnInput() {
+    const min = document.querySelector('#min');
+    const max = document.querySelector('#max');
+    
+    min.addEventListener('input', () => {
+        removePokedex();
+        populatePokedex();
+    });
+
+    max.addEventListener('input', () => {
+        removePokedex();
+        populatePokedex();
+    });
+}
+
+showOnClick();
+showOnInput();

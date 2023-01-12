@@ -89,5 +89,9 @@ function showOnInput() {
     });
 }
 
-showOnClick();
-showOnInput();
+function appRun() {
+    showOnClick();
+    showOnInput();
+}
+
+appRun();

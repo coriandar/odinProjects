@@ -1,27 +1,23 @@
 
 /* Source: https://github.com/PokeAPI */
 
-function populatePokedex () {
-    let min = parseInt(document.querySelector('input[name="min"]').value);
-    let max = parseInt(document.querySelector('input[name="max"]').value);
-
-    if (isNaN(min)) {
-        min = 1;
-    }
-    if (isNaN(max)) {
-        max = 151;
-    }
-    if (min > max) {
-        min = 1;
-    }
-    if (max > 151) {
-        max = 151;
-    }
-
-    createEntry(min, max);
+function newPokedex() {
+    removePokedex();
+    createPokedex(getMinMax()[0], getMinMax()[1]);
 }
 
-function createEntry(min, max) {
+function getMinMax() {
+    let min = parseInt(document.querySelector('input[name="min"]').value);
+    let max = parseInt(document.querySelector('input[name="max"]').value);
+    min = isNaN(min) || min < 0 ? 1 : min;
+    max = isNaN(max) || max < 0 ? 151 : max;
+    min = min > max ? 1 : min;
+    max = max > 151 ? 151 : max;
+    return [min, max];
+}
+
+
+function createPokedex(min, max) {
     const pokeNames = [
         'Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon' ,'Charizard' ,'Squirtle' ,'Wartortle' ,'Blastoise' ,'Caterpie'
         ,'Metapod' ,'Butterfree' ,'Weedle' ,'Kakuna' ,'Beedrill' ,'Pidgey' ,'Pidgeotto' ,'Pidgeot' ,'Rattata' ,'Raticate'
@@ -69,8 +65,7 @@ function showOnClick() {
     const showPokemon = document.querySelector('button');
     
     showPokemon.addEventListener('click', function() {
-        removePokedex();
-        populatePokedex();
+        newPokedex();
     });
 }
 
@@ -79,19 +74,13 @@ function showOnInput() {
     const max = document.querySelector('#max');
     
     min.addEventListener('input', () => {
-        removePokedex();
-        populatePokedex();
+        newPokedex();
     });
 
     max.addEventListener('input', () => {
-        removePokedex();
-        populatePokedex();
+        newPokedex();
     });
 }
 
-function appRun() {
-    showOnClick();
-    showOnInput();
-}
-
-appRun();
+showOnClick();
+showOnInput();

@@ -1,5 +1,8 @@
 
-/* Source: https://github.com/PokeAPI */
+/*
+Source: https://github.com/PokeAPI
+        https://pokeapi.co/
+*/
 
 function newPokedex() {
     removePokedex();
